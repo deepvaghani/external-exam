@@ -41,7 +41,7 @@ pipeline {
                     sh 'mvn clean package'
                     def version = (readFile('pom.xml') =~ '<version>(.+)</version>')[0][2]
                     env.IMAGE_NAME = "$version-$BUILD_NUMBER"
-                    sh "docker build -t deep20it155/externalexam:${IMAGE_NAME} ."
+                    sh "docker build -t jenil08/pracexam:${IMAGE_NAME} ."
                     }
             }
         }
@@ -59,9 +59,9 @@ pipeline {
       stage('deploy') {
             steps {
                 script{echo 'deploying the application...'
-                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId: 'dockerid', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
                     sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
-                    sh "docker push deep20it155/externalexam:${IMAGE_NAME}"
+                    sh "docker push jenil08/pracexam:${IMAGE_NAME}"
                 }}
 
              }
