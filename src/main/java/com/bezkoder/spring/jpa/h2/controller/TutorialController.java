@@ -39,6 +39,12 @@ public class TutorialController {
 		}
 	}
 
+	@RequestMapping("/demo")
+	public @ResponseBody String greeting() {
+		return "Hello, My Name is Deep and ID is 20it155";
+	}
+
+
 //	@GetMapping("/tutorials/{id}")
 //	public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
 //		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
